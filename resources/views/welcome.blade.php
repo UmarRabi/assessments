@@ -203,23 +203,23 @@
                                 <th class="col-2">Week ${i+1} </th>
                                 <th class="col-2">
                                     <input type="checkbox" ${e.day1 ? 'checked'  : ''} class="checkers" id="day1_${i}"  >
-                                    <input type="hidden" id="day1${i}" name=day1[] value="0">
+                                    <input type="hidden" id="day1${i}" name=day1[] value="${e.day1 ?? ''}">
                                     </th>
                                 <th class="col-2">
                                     <input type="checkbox" ${e.day2 ? 'checked' : ''} class="checkers" id="day2_${i}" >
-                                     <input type="hidden" id="day2${i}" name=day2[] value="0">
+                                     <input type="hidden" id="day2${i}" name=day2[] value="${e.day2 ?? ''}">
                                     </th>
                                 <th class="col-2">
                                     <input type="checkbox" ${e.day3 ? 'checked' : ''} class="checkers" id="day3_${i}" >
-                                     <input type="hidden" id="day3${i}" name=day3[] value="0">
+                                     <input type="hidden" id="day3${i}" name=day3[] value="${e.day3 ?? ''}">
                                     </th>
                                 <th class="col-2">
                                     <input type="checkbox" ${e.day4 ? 'checked' : ''} class="checkers" id="day4_${i}">
-                                     <input type="hidden" id="day4${i}" name=day4[] value="0">
+                                     <input type="hidden" id="day4${i}" name=day4[] value="${e.day4 ?? ''}">
                                     </th>
                                 <th class="col-2">
                                     <input type="checkbox" ${e.day5 ? 'checked' :''} class="checkers" id="day5_${i}">
-                                     <input type="hidden" id="day5${i}" name=day5[] value="0">
+                                     <input type="hidden" id="day5${i}" name=day5[] value="${e.day5 ?? ''}">
                                     </th>
                             </tr>`
 
