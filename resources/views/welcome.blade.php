@@ -138,6 +138,21 @@
     $(document).ready(function() {
         var weeks = 0
         var days = 0;
+        var objdup = {
+            uid: null,
+            gid: null,
+            min: 0,
+            max: 0,
+            days: 0,
+            weeks: 0,
+            weekly: [{
+                day1: false,
+                day2: false,
+                day3: false,
+                day4: false,
+                day5: false,
+            }, ],
+        };
         var obj = {
             uid: null,
             gid: null,
@@ -162,8 +177,17 @@
             if (response.status == 200) {
                 obj = response.data
                 map(obj);
-            } else
-                map(obj)
+            } else {
+                // obj.weekly = [];
+                // boj.weekly.push({
+                //     day1: false,
+                //     day2: false,
+                //     day3: false,
+                //     day4: false,
+                //     day5: false
+                // })
+                map(objdup)
+            }
         });
 
         $('#add').on('click', async function() {
@@ -189,11 +213,14 @@
         // })
 
         function map(obj) {
+
             $("#gid").val(obj.gid);
             $("#min").val(obj.min);
             $("#max").val(obj.max);
             $("#days").val(obj.days);
             $("#weeks").val(obj.weeks);
+            // }
+
             days = obj.days
             weeks = obj.weeks
             $('#tbody').html('')
@@ -243,6 +270,11 @@
             })
         }
         $('#min').on('change', function() {
+            obj.min = this.value
+            $('#total_amount').val($('#min').val() * days)
+        })
+        $('#max').on('change', function() {
+            obj.max = this.value
             $('#total_amount').val($('#min').val() * days)
         })
         // function addWeek() {
