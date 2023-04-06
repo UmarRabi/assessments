@@ -17,8 +17,13 @@ use App\Models\Week;
 */
 
 Route::get('/', function () {
+    $files = [];
+    $assesments = Assessment::get();
+    return view('home', ['assessments' => $assesments]);
+})->name('home');
+Route::get('/create', function () {
     return view('welcome');
-});
+})->name('create');
 Route::post("/", function (Request $request) {
     $assesment = Assessment::where('uid', $request->uid)->first() ?? new Assessment();
     $assesment->uid = $request->uid;
@@ -47,6 +52,10 @@ Route::post("/", function (Request $request) {
         $week->day5 = $request->day5[$key];
         $week->save();
     }
-
-    return "saved successfully";
-});
+    // Alert::success("Hello Badmous");
+    return view('home');
+})->name('save');
+Route::get("/{uid}", function ($uid) {
+    $assesment = Assessment::where('uid', $uid)->first();
+    return view('welcome', ['assessment' => $assesment]);
+})->name('view');

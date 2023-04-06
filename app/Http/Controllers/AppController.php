@@ -8,4 +8,6 @@ class AppController extends Controller
 {
     //
     public function save(Request $request)
+    {
+    }
 }

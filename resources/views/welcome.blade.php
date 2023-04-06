@@ -136,6 +136,12 @@
 </script>
 <script>
     $(document).ready(function() {
+        let loc = window.location.pathname
+        if (loc != '/create') {
+            uid = loc.replace("/", "")
+            uidf(uid)
+        }
+
         var weeks = 0
         var days = 0;
         var objdup = {
@@ -171,23 +177,7 @@
         map(obj)
         $("#uid").on("change", async function() {
             let uid = $(this).val();
-            let url = `${window.location.origin}/api/${uid}`
-            let response = await fetch(url)
-            response = await response.json()
-            if (response.status == 200) {
-                obj = response.data
-                map(obj);
-            } else {
-                // obj.weekly = [];
-                // boj.weekly.push({
-                //     day1: false,
-                //     day2: false,
-                //     day3: false,
-                //     day4: false,
-                //     day5: false
-                // })
-                map(objdup)
-            }
+            uidf(uid)
         });
 
         $('#add').on('click', async function() {
@@ -211,6 +201,17 @@
         //     // obj[id[1]][id[0]] = $(this).checked
 
         // })
+        async function uidf(uid) {
+            let url = `${window.location.origin}/api/${uid}`
+            let response = await fetch(url)
+            response = await response.json()
+            if (response.status == 200) {
+                obj = response.data
+                map(obj);
+            } else {
+                map(objdup)
+            }
+        }
 
         function map(obj) {
 
