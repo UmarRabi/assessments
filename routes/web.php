@@ -25,6 +25,7 @@ Route::get('/create', function () {
     return view('welcome');
 })->name('create');
 Route::post("/", function (Request $request) {
+    // return $request;
     $assesment = Assessment::where('uid', $request->uid)->first() ?? new Assessment();
     $assesment->uid = $request->uid;
     $assesment->gid = $request->gid;
@@ -45,15 +46,15 @@ Route::post("/", function (Request $request) {
             $week->uid = $request->uid;
         }
 
-        $week->day1 = $value;
-        $week->day2 = $request->day2[$key];
-        $week->day3 = $request->day3[$key];
-        $week->day4 = $request->day4[$key];
-        $week->day5 = $request->day5[$key];
+        $week->day1 = $value == "1" ? 1 : 0;
+        $week->day2 = $request->day2[$key] == "1" ? 1 : 0;
+        $week->day3 = $request->day3[$key] == "1" ? 1 : 0;
+        $week->day4 = $request->day4[$key] == "1" ? 1 : 0;
+        $week->day5 = $request->day5[$key]  == "1" ? 1 : 0;
         $week->save();
     }
     // Alert::success("Hello Badmous");
-    return view('home');
+    return redirect()->route('home');
 })->name('save');
 Route::get("/{uid}", function ($uid) {
     $assesment = Assessment::where('uid', $uid)->first();

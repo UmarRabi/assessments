@@ -262,7 +262,7 @@
             $(".checkers").on('click', function() {
                 let id = $(this).attr('id')
                 id = id.split('_')
-                obj.weekly[id[1]][id[0]] = this.checked
+                obj.weekly[id[1]][id[0]] = this.checked ? 1 : 0
                 if (this.checked) {
                     $('#' + id[0] + id[1]).val(1);
                     days += 1
