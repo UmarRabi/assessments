@@ -177,6 +177,7 @@
         map(obj)
         $("#uid").on("change", async function() {
             let uid = $(this).val();
+            obj.uid = uid
             uidf(uid)
         });
 
@@ -212,11 +213,12 @@
             } else {
                 obj = objdup
                 obj.uid = uid
-                map(objdup)
+                map(obj)
             }
         }
 
         function map(obj) {
+            $("#uid").val(obj.uid);
             $("#gid").val(obj.gid);
             $("#min").val(obj.min);
             $("#max").val(obj.max);
