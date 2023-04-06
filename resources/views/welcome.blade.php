@@ -28,7 +28,7 @@
 </head>
 
 <body>
-    <form action="" method="post">
+    <form action="{{ route('save') }}" method="post">
         @csrf
         <div class="container p-5 m-5">
             <div class="card border-green d-flex justify-content-center">
