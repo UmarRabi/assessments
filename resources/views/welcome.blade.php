@@ -207,14 +207,16 @@
             response = await response.json()
             if (response.status == 200) {
                 obj = response.data
+                obj.uid = uid
                 map(obj);
             } else {
+                obj = objdup
+                obj.uid = uid
                 map(objdup)
             }
         }
 
         function map(obj) {
-
             $("#gid").val(obj.gid);
             $("#min").val(obj.min);
             $("#max").val(obj.max);
@@ -267,6 +269,7 @@
                     days -= 1
                 }
                 $('#days').val(days)
+                obj.days = days
                 $('#total_amount').val($('#min').val() * days)
             })
         }
